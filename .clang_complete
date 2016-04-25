@@ -1,0 +1,4 @@
+-I./include
+-Wall
+-march=native
+-std=c++11
