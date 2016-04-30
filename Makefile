@@ -5,9 +5,9 @@ CPPFLAGS=-Iinclude -Ileveldb -std=c++11 -Wall -g
 LDFLAGS=-g
 LDLIBS=
 
-SRCS=src/log.cc src/util.cc src/table.cc
+SRCS=src/log.cc src/util.cc src/table.cc src/field.cc
 OBJS=$(subst .cc,.o,$(SRCS))
-TEST_SRCS=test/test.cc test/log.cc
+TEST_SRCS=test/test.cc test/log.cc test/field.cc
 TEST_OBJS=$(subst .cc,.o,$(TEST_SRCS))
 
 all: test_runner

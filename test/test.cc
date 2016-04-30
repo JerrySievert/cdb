@@ -42,6 +42,8 @@ int main (int argc, char **argv) {
   test(test_warn_log, "test notice log");
   test(test_warn_log, "test log log");
 
+  test(test_field, "test field");
+
   std::cout << "\nPASSED: " << test_passed << "\nFAILED: " << test_failed << std::endl;
 
   return (test_failed > 0 ? 1 : 0);

@@ -24,3 +24,5 @@ int test_warn_log ( );
 int test_debug_log ( );
 int test_notice_log ( );
 int test_log_log ( );
+
+int test_field ( );
