@@ -18,7 +18,7 @@ std::string Field::serialize ( ) {
 }
 
 void Field::deserialize (std::string serialized) {
-  std::vector<std::string> parts = split(serialized, ":");
+  std::vector<std::string> parts = split(serialized, ':');
 
   this->name = parts[0];
   this->type = std::stoi(parts[1]);

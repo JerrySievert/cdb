@@ -48,9 +48,8 @@ void test_error_log_single ( ) {
   logger.close();
 
   std::string read = get_file_contents("./error.log");
-  std::vector<std::string> parts = split(read, ": ");
-
-  check(parts[1] == "foo\n", "error file is correct for a single argument");
+  std::vector<std::string> parts = split(read, ':');
+  check(parts[3] == " foo\n", "error file is correct for a single argument");
 
   cleanup();
 }
@@ -64,9 +63,9 @@ void test_error_log_multi ( ) {
   logger.close();
 
   std::string read = get_file_contents("./error.log");
-  std::vector<std::string> parts = split(read, ": ");
+  std::vector<std::string> parts = split(read, ':');
 
-  check(parts[1] == "foo bar\n", "error file is correct for multiple arguments");
+  check(parts[3] == " foo bar\n", "error file is correct for multiple arguments");
 
   cleanup();
 }
@@ -80,9 +79,9 @@ void test_error_log_append ( ) {
   logger.close();
 
   std::string read = get_file_contents("./error.log");
-  std::vector<std::string> parts = split(read, ": ");
+  std::vector<std::string> parts = split(read, ':');
 
-  check(parts[1] == "foo bar\n", "error file is correct for append first read");
+  check(parts[3] == " foo bar\n", "error file is correct for append first read");
 
   Logger logger2(config);
   logger2.error({"bar", "baz"});
@@ -90,9 +89,9 @@ void test_error_log_append ( ) {
 
   read = get_file_contents("./error.log");
 
-  std::vector<std::string> lines = split(read, "\n");
-  parts = split(lines[1], ": ");
-  check(parts[1] == "bar baz", "error file is correct for append");
+  std::vector<std::string> lines = split(read, '\n');
+  parts = split(lines[1], ':');
+  check(parts[3] == " bar baz", "error file is correct for append");
 
   cleanup();
 }
@@ -114,9 +113,9 @@ void test_warn_log_single ( ) {
   logger.close();
 
   std::string read = get_file_contents("./warn.log");
-  std::vector<std::string> parts = split(read, ": ");
+  std::vector<std::string> parts = split(read, ':');
 
-  check(parts[1] == "foo\n", "warn file is correct for a single argument");
+  check(parts[3] == " foo\n", "warn file is correct for a single argument");
 
   cleanup();
 }
@@ -130,9 +129,9 @@ void test_warn_log_multi ( ) {
   logger.close();
 
   std::string read = get_file_contents("./warn.log");
-  std::vector<std::string> parts = split(read, ": ");
+  std::vector<std::string> parts = split(read, ':');
 
-  check(parts[1] == "foo bar\n", "warn file is correct for multiple arguments");
+  check(parts[3] == " foo bar\n", "warn file is correct for multiple arguments");
 
   cleanup();
 }
@@ -146,9 +145,9 @@ void test_warn_log_append ( ) {
   logger.close();
 
   std::string read = get_file_contents("./warn.log");
-  std::vector<std::string> parts = split(read, ": ");
+  std::vector<std::string> parts = split(read, ':');
 
-  check(parts[1] == "foo bar\n", "warn file is correct for append first read");
+  check(parts[3] == " foo bar\n", "warn file is correct for append first read");
 
   Logger logger2(config);
   logger2.warn({"bar", "baz"});
@@ -156,9 +155,9 @@ void test_warn_log_append ( ) {
 
   read = get_file_contents("./warn.log");
 
-  std::vector<std::string> lines = split(read, "\n");
-  parts = split(lines[1], ": ");
-  check(parts[1] == "bar baz", "warn file is correct for append");
+  std::vector<std::string> lines = split(read, '\n');
+  parts = split(lines[1], ':');
+  check(parts[3] == " bar baz", "warn file is correct for append");
 
   cleanup();
 }
@@ -180,9 +179,9 @@ void test_debug_log_single ( ) {
   logger.close();
 
   std::string read = get_file_contents("./debug.log");
-  std::vector<std::string> parts = split(read, ": ");
+  std::vector<std::string> parts = split(read, ':');
 
-  check(parts[1] == "foo\n", "debug file is correct for a single argument");
+  check(parts[3] == " foo\n", "debug file is correct for a single argument");
 
   cleanup();
 }
@@ -196,9 +195,9 @@ void test_debug_log_multi ( ) {
   logger.close();
 
   std::string read = get_file_contents("./debug.log");
-  std::vector<std::string> parts = split(read, ": ");
+  std::vector<std::string> parts = split(read, ':');
 
-  check(parts[1] == "foo bar\n", "debug file is correct for multiple arguments");
+  check(parts[3] == " foo bar\n", "debug file is correct for multiple arguments");
 
   cleanup();
 }
@@ -212,9 +211,9 @@ void test_debug_log_append ( ) {
   logger.close();
 
   std::string read = get_file_contents("./debug.log");
-  std::vector<std::string> parts = split(read, ": ");
+  std::vector<std::string> parts = split(read, ':');
 
-  check(parts[1] == "foo bar\n", "debug file is correct for append first read");
+  check(parts[3] == " foo bar\n", "debug file is correct for append first read");
 
   Logger logger2(config);
   logger2.debug({"bar", "baz"});
@@ -222,9 +221,9 @@ void test_debug_log_append ( ) {
 
   read = get_file_contents("./debug.log");
 
-  std::vector<std::string> lines = split(read, "\n");
-  parts = split(lines[1], ": ");
-  check(parts[1] == "bar baz", "debug file is correct for append");
+  std::vector<std::string> lines = split(read, '\n');
+  parts = split(lines[1], ':');
+  check(parts[3] == " bar baz", "debug file is correct for append");
 
   cleanup();
 }
@@ -246,7 +245,7 @@ void test_notice_log_single ( ) {
   logger.close();
 
   std::string read = get_file_contents("./notice.log");
-  std::vector<std::string> parts = split(read, ": ");
+  std::vector<std::string> parts = split(read, ':');
 
   check(parts[1] == "foo\n", "notice file is correct for a single argument");
 
@@ -262,9 +261,9 @@ void test_notice_log_multi ( ) {
   logger.close();
 
   std::string read = get_file_contents("./notice.log");
-  std::vector<std::string> parts = split(read, ": ");
+  std::vector<std::string> parts = split(read, ':');
 
-  check(parts[1] == "foo bar\n", "notice file is correct for multiple arguments");
+  check(parts[3] == " foo bar\n", "notice file is correct for multiple arguments");
 
   cleanup();
 }
@@ -278,9 +277,9 @@ void test_notice_log_append ( ) {
   logger.close();
 
   std::string read = get_file_contents("./notice.log");
-  std::vector<std::string> parts = split(read, ": ");
+  std::vector<std::string> parts = split(read, ':');
 
-  check(parts[1] == "foo bar\n", "notice file is correct for append first read");
+  check(parts[3] == " foo bar\n", "notice file is correct for append first read");
 
   Logger logger2(config);
   logger2.notice({"bar", "baz"});
@@ -288,9 +287,9 @@ void test_notice_log_append ( ) {
 
   read = get_file_contents("./notice.log");
 
-  std::vector<std::string> lines = split(read, "\n");
-  parts = split(lines[1], ": ");
-  check(parts[1] == "bar baz", "notice file is correct for append");
+  std::vector<std::string> lines = split(read, '\n');
+  parts = split(lines[1], ':');
+  check(parts[3] == " bar baz", "notice file is correct for append");
 
   cleanup();
 }
@@ -312,9 +311,9 @@ void test_log_log_single ( ) {
   logger.close();
 
   std::string read = get_file_contents("./cdb.log");
-  std::vector<std::string> parts = split(read, ": ");
+  std::vector<std::string> parts = split(read, ':');
 
-  check(parts[1] == "foo\n", "log file is correct for a single argument");
+  check(parts[1] == " foo\n", "log file is correct for a single argument");
 
   cleanup();
 }
@@ -328,9 +327,9 @@ void test_log_log_multi ( ) {
   logger.close();
 
   std::string read = get_file_contents("./cdb.log");
-  std::vector<std::string> parts = split(read, ": ");
+  std::vector<std::string> parts = split(read, ':');
 
-  check(parts[1] == "foo bar\n", "log file is correct for multiple arguments");
+  check(parts[1] == " foo bar\n", "log file is correct for multiple arguments");
 
   cleanup();
 }
@@ -344,9 +343,9 @@ void test_log_log_append ( ) {
   logger.close();
 
   std::string read = get_file_contents("./cdb.log");
-  std::vector<std::string> parts = split(read, ": ");
+  std::vector<std::string> parts = split(read, ':');
 
-  check(parts[1] == "foo bar\n", "log file is correct for append first read");
+  check(parts[1] == " foo bar\n", "log file is correct for append first read");
 
   Logger logger2(config);
   logger2.log({"bar", "baz"});
@@ -354,9 +353,9 @@ void test_log_log_append ( ) {
 
   read = get_file_contents("./cdb.log");
 
-  std::vector<std::string> lines = split(read, "\n");
-  parts = split(lines[1], ": ");
-  check(parts[1] == "bar baz", "log file is correct for append");
+  std::vector<std::string> lines = split(read, '\n');
+  parts = split(lines[1], ':');
+  check(parts[1] == " bar baz", "log file is correct for append");
 
   cleanup();
 }

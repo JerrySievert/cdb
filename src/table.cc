@@ -10,7 +10,11 @@ std::string Table::serialize ( ) {
 
   for (uint8_t i = 0; i < this->size; i++) {
     serialized += this->fields[i].serialize();
+
+    if (i < this->size - 1) {
+      serialized += "--\n";
+    }
   }
 
-  return "";
+  return serialized;
 }
