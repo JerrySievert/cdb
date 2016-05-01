@@ -12,7 +12,7 @@ int test_table ( ) {
   check(table.name == "table_name", "the name is correct");
   check(table.fields.size() == 3, "the number of fields is correct");
 
-  std::string serialized = table.serialize();
+  string serialized = table.serialize();
 
   check(serialized == "table_name\nfoo:1\nbar:3\nbaz:4\n", "the table is serialized correctly");
 

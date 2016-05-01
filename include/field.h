@@ -2,6 +2,8 @@
 
 #include <string>
 
+using namespace std;
+
 typedef uint8_t FieldType;
 
 const FieldType CDB_STRING = 1;
@@ -12,9 +14,9 @@ const FieldType CDB_INT32  = 4;
 class Field {
 public:
   Field ( );
-  Field (std::string, FieldType);
-  std::string name;
+  Field (string, FieldType);
+  string name;
   FieldType type;
-  std::string serialize ( );
-  void deserialize (std::string);
+  string serialize ( );
+  void deserialize (string);
 };

@@ -3,29 +3,31 @@
 
 #include "test.h"
 
+using namespace std;
+
 uint8_t spec = 0;
 uint16_t test_passed = 0;
 uint16_t test_failed = 0;
 
 void _test_pass (const char *message) {
   if (spec) {
-    std::cout << "  ✓ " << message << std::endl;
+    cout << "  ✓ " << message << endl;
   } else {
-    std::cout << ".";
+    cout << ".";
   }
 }
 
 void _test_fail (const char *message, const char *file, uint16_t line) {
   if (spec) {
-    std::cout << "  𝙭 " << message << " (" << file << ":" << line << ")\n";
+    cout << "  𝙭 " << message << " (" << file << ":" << line << ")\n";
   } else {
-    std::cout << "𝙭";
+    cout << "𝙭";
   }
 }
 
 void _test_start (const char *name) {
   if (spec) {
-    std::cout << std::endl << name << std::endl;
+    cout << endl << name << endl;
   }
 }
 
@@ -46,7 +48,7 @@ int main (int argc, char **argv) {
 
   test(test_table, "test table");
 
-  std::cout << "\nPASSED: " << test_passed << "\nFAILED: " << test_failed << std::endl;
+  cout << "\nPASSED: " << test_passed << "\nFAILED: " << test_failed << endl;
 
   return (test_failed > 0 ? 1 : 0);
 }

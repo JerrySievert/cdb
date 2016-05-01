@@ -6,19 +6,21 @@
 
 #include "config.h"
 
+using namespace std;
+
 class Logger {
 private:
-  std::ofstream error_f;
-  std::ofstream warn_f;
-  std::ofstream debug_f;
-  std::ofstream notice_f;
-  std::ofstream log_f;
+  ofstream error_f;
+  ofstream warn_f;
+  ofstream debug_f;
+  ofstream notice_f;
+  ofstream log_f;
 public:
   Logger (Config);
   void close ( );
-  void error (std::initializer_list<std::string>);
-  void warn (std::initializer_list<std::string>);
-  void debug (std::initializer_list<std::string>);
-  void notice (std::initializer_list<std::string>);
-  void log (std::initializer_list<std::string>);
+  void error (initializer_list<string>);
+  void warn (initializer_list<string>);
+  void debug (initializer_list<string>);
+  void notice (initializer_list<string>);
+  void log (initializer_list<string>);
 };

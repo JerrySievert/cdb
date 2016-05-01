@@ -5,13 +5,13 @@ Table::Table ( ) {
 
 }
 
-Table::Table (std::string name, std::vector<Field> fields) {
+Table::Table (string name, vector<Field> fields) {
   this->name = name;
   this->fields = fields;
 }
 
-std::string Table::serialize ( ) {
-  std::string serialized;
+string Table::serialize ( ) {
+  string serialized;
 
   serialized = this->name + "\n";
 
@@ -22,9 +22,9 @@ std::string Table::serialize ( ) {
   return serialized;
 }
 
-void Table::deserialize (std::string serialized) {
-  std::vector<std::string> parts = split(serialized, '\n');
-  std::vector<Field> fields;
+void Table::deserialize (string serialized) {
+  vector<string> parts = split(serialized, '\n');
+  vector<Field> fields;
 
   this->name = parts[0];
 

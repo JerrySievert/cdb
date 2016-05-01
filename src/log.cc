@@ -5,15 +5,15 @@
 
 #include "log.h"
 
-std::string current_time ( ) {
-  std::time_t t = std::time(NULL);
+string current_time ( ) {
+  time_t t = time(NULL);
   char mbstr[100];
-  std::strftime(mbstr, sizeof(mbstr), "%c", std::localtime(&t));
+  strftime(mbstr, sizeof(mbstr), "%c", localtime(&t));
 
-  return std::string(mbstr);
+  return string(mbstr);
 }
 
-void write_log (std::ofstream& out_f, std::initializer_list<std::string> out) {
+void write_log (ofstream& out_f, initializer_list<string> out) {
   int count = 1;
 
   out_f << current_time() << ": ";
@@ -28,16 +28,16 @@ void write_log (std::ofstream& out_f, std::initializer_list<std::string> out) {
     count++;
   }
 
-  out_f << std::endl;
+  out_f << endl;
   out_f.flush();
 }
 
 Logger::Logger (Config config) {
-  error_f.open(config.logPath + "error.log", std::ofstream::out | std::ofstream::app);
-  warn_f.open(config.logPath + "warn.log", std::ofstream::out | std::ofstream::app);
-  debug_f.open(config.logPath + "debug.log", std::ofstream::out | std::ofstream::app);
-  notice_f.open(config.logPath + "notice.log", std::ofstream::out | std::ofstream::app);
-  log_f.open(config.logPath + "cdb.log", std::ofstream::out | std::ofstream::app);
+  error_f.open(config.logPath + "error.log", ofstream::out | ofstream::app);
+  warn_f.open(config.logPath + "warn.log", ofstream::out | ofstream::app);
+  debug_f.open(config.logPath + "debug.log", ofstream::out | ofstream::app);
+  notice_f.open(config.logPath + "notice.log", ofstream::out | ofstream::app);
+  log_f.open(config.logPath + "cdb.log", ofstream::out | ofstream::app);
 }
 
 void Logger::close ( ) {
@@ -48,22 +48,22 @@ void Logger::close ( ) {
   log_f.close();
 }
 
-void Logger::error (std::initializer_list<std::string> out) {
+void Logger::error (initializer_list<string> out) {
   write_log(error_f, out);
 }
 
-void Logger::warn (std::initializer_list<std::string> out) {
+void Logger::warn (initializer_list<string> out) {
   write_log(warn_f, out);
 }
 
-void Logger::debug (std::initializer_list<std::string> out) {
+void Logger::debug (initializer_list<string> out) {
   write_log(debug_f, out);
 }
 
-void Logger::notice (std::initializer_list<std::string> out) {
+void Logger::notice (initializer_list<string> out) {
   write_log(notice_f, out);
 }
 
-void Logger::log (std::initializer_list<std::string> out) {
+void Logger::log (initializer_list<string> out) {
   write_log(log_f, out);
 }

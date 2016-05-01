@@ -1,6 +1,6 @@
 #pragma once
-#include <stdint.h>
 
+#include <stdint.h>
 
 extern uint8_t spec;
 extern uint16_t test_passed;

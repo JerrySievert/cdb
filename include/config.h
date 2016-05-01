@@ -1,7 +1,9 @@
 #pragma once
 
+using namespace std;
+
 class Config {
 public:
-  std::string logPath;
-  std::string dbPath;
+  string logPath;
+  string dbPath;
 };

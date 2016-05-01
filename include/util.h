@@ -1,3 +1,5 @@
 #pragma once
 
-std::vector<std::string> split(const std::string&, const char);
+using namespace std;
+
+vector<string> split(const string&, const char);

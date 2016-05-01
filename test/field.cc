@@ -9,7 +9,7 @@ int test_field ( ) {
   check(field.name == "foo", "the name is correct");
   check(field.type == CDB_STRING, "the type is correct");
 
-  std::string serialized = field.serialize();
+  string serialized = field.serialize();
 
   check(serialized == "foo:1\n", "the field is serialized correctly");
 

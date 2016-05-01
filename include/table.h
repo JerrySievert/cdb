@@ -6,12 +6,14 @@
 #include "field.h"
 #include "config.h"
 
+using namespace std;
+
 class Table {
 public:
-  std::vector<Field> fields;
-  std::string name;
+  vector<Field> fields;
+  string name;
   Table ( );
-  Table (std::string, std::vector<Field>);
-  std::string serialize ();
-  void deserialize (std::string);
+  Table (string, vector<Field>);
+  string serialize ();
+  void deserialize (string);
 };
