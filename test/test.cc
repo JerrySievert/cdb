@@ -44,6 +44,8 @@ int main (int argc, char **argv) {
 
   test(test_field, "test field");
 
+  test(test_table, "test table");
+
   std::cout << "\nPASSED: " << test_passed << "\nFAILED: " << test_failed << std::endl;
 
   return (test_failed > 0 ? 1 : 0);

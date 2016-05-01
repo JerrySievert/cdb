@@ -7,7 +7,7 @@ LDLIBS=
 
 SRCS=src/log.cc src/util.cc src/table.cc src/field.cc
 OBJS=$(subst .cc,.o,$(SRCS))
-TEST_SRCS=test/test.cc test/log.cc test/field.cc
+TEST_SRCS=test/test.cc test/log.cc test/field.cc test/table.cc
 TEST_OBJS=$(subst .cc,.o,$(TEST_SRCS))
 
 all: test_runner

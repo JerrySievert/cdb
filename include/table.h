@@ -1,17 +1,17 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 #include "field.h"
 #include "config.h"
 
 class Table {
-private:
-  Field *fields;
-  uint8_t size;
-  std::string name;
 public:
-  Table (Field fields[], uint8_t size);
+  std::vector<Field> fields;
+  std::string name;
+  Table ( );
+  Table (std::string, std::vector<Field>);
   std::string serialize ();
-  bool deserialize (std::string);
+  void deserialize (std::string);
 };

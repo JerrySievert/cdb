@@ -18,7 +18,7 @@ std::vector<std::string> split(const std::string& s, const char c) {
   std::string buf {""};
   std::vector<std::string> v;
 
-  for(auto n:s) {
+  for (auto n:s) {
     if (n != c) {
       buf += n;
     } else {

@@ -1,20 +1,38 @@
 #include "table.h"
+#include "util.h"
 
-Table::Table (Field *fields, uint8_t size) {
+Table::Table ( ) {
+
+}
+
+Table::Table (std::string name, std::vector<Field> fields) {
+  this->name = name;
   this->fields = fields;
-  this->size = size;
 }
 
 std::string Table::serialize ( ) {
   std::string serialized;
 
-  for (uint8_t i = 0; i < this->size; i++) {
-    serialized += this->fields[i].serialize();
+  serialized = this->name + "\n";
 
-    if (i < this->size - 1) {
-      serialized += "--\n";
-    }
+  for (auto field:this->fields) {
+    serialized += field.serialize();
   }
 
   return serialized;
+}
+
+void Table::deserialize (std::string serialized) {
+  std::vector<std::string> parts = split(serialized, '\n');
+  std::vector<Field> fields;
+
+  this->name = parts[0];
+
+  for (int i = 1; i < parts.size(); i++) {
+    Field field;
+    field.deserialize(parts[i]);
+    fields.push_back(field);
+  }
+
+  this->fields = fields;
 }
