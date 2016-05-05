@@ -1,8 +1,8 @@
 CC=gcc
 CXX=g++
 RM=rm -f
-CPPFLAGS=-Iinclude -Ileveldb/include -std=c++11 -Wall -g
-LDFLAGS=-g -Lleveldb/out-static
+CPPFLAGS=-Iinclude -Ileveldb/include -std=c++11 -Wall -g -fsanitize=address -fno-omit-frame-pointer
+LDFLAGS=-g -Lleveldb/out-static -fsanitize=address -fno-omit-frame-pointer
 LDLIBS=-lleveldb
 
 SRCS=src/log.cc \

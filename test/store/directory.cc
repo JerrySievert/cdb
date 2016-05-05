@@ -18,8 +18,8 @@ void test_make_directory ( ) {
 }
 
 void test_remove_directory ( ) {
-  remove_directory("test/fixtures/foo");
-  check(directory_exists("test/fixtures/foo") == false, "the directory is removed");
+  remove_directory("test/fixtures/bar");
+  check(directory_exists("test/fixtures/bar") == false, "the directory is removed");
 }
 
 int test_directory ( ) {

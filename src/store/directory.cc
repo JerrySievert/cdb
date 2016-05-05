@@ -46,9 +46,8 @@ bool make_directory (string name) {
 
 static int unlink_cb (const char *fpath, const struct stat *sb, int typeflag, struct FTW *ftwbuf) {
   int error = remove(fpath);
-
-  if (error) {
-    perror(fpath);
+  if (error != 0) {
+    assert(errno);
   }
 
   return error;
@@ -66,9 +65,9 @@ bool directory_exists (string path) {
     return false;
   }
 
-  if (buf.st_mode == S_IFDIR) {
+  if (S_IFDIR) {
     return true;
   }
 
-  return false;
+  return S_ISDIR(buf.st_mode);
 }
