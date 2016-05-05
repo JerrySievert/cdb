@@ -1,9 +1,4 @@
-#include <fstream>
-#include <streambuf>
 #include <string>
-#include <cerrno>
-#include <cstdio>
-#include <iostream>
 #include <vector>
 
 #include "log.h"
@@ -11,25 +6,6 @@
 #include "util.h"
 #include "test.h"
 
-string get_file_contents(const char *filename) {
-  ifstream ifs (filename, ifstream::in);
-  char c, d[2];
-  string read;
-
-  c = ifs.get();
-
-  while (ifs.good()) {
-    d[0] = c;
-    d[1] = '\0';
-
-    read.append(d);
-    c = ifs.get();
-  }
-
-  return read;
-
-  throw(errno);
-}
 
 void cleanup ( ) {
   remove("./error.log");
@@ -47,7 +23,7 @@ void test_error_log_single ( ) {
   logger.error({"foo"});
   logger.close();
 
-  string read = get_file_contents("./error.log");
+  string read = read_file("./error.log");
   vector<string> parts = split(read, ':');
   check(parts[3] == " foo\n", "error file is correct for a single argument");
 
@@ -62,7 +38,7 @@ void test_error_log_multi ( ) {
   logger.error({"foo", "bar"});
   logger.close();
 
-  string read = get_file_contents("./error.log");
+  string read = read_file("./error.log");
   vector<string> parts = split(read, ':');
 
   check(parts[3] == " foo bar\n", "error file is correct for multiple arguments");
@@ -78,7 +54,7 @@ void test_error_log_append ( ) {
   logger.error({"foo", "bar"});
   logger.close();
 
-  string read = get_file_contents("./error.log");
+  string read = read_file("./error.log");
   vector<string> parts = split(read, ':');
 
   check(parts[3] == " foo bar\n", "error file is correct for append first read");
@@ -87,7 +63,7 @@ void test_error_log_append ( ) {
   logger2.error({"bar", "baz"});
   logger2.close();
 
-  read = get_file_contents("./error.log");
+  read = read_file("./error.log");
 
   vector<string> lines = split(read, '\n');
   parts = split(lines[1], ':');
@@ -112,7 +88,7 @@ void test_warn_log_single ( ) {
   logger.warn({"foo"});
   logger.close();
 
-  string read = get_file_contents("./warn.log");
+  string read = read_file("./warn.log");
   vector<string> parts = split(read, ':');
 
   check(parts[3] == " foo\n", "warn file is correct for a single argument");
@@ -128,7 +104,7 @@ void test_warn_log_multi ( ) {
   logger.warn({"foo", "bar"});
   logger.close();
 
-  string read = get_file_contents("./warn.log");
+  string read = read_file("./warn.log");
   vector<string> parts = split(read, ':');
 
   check(parts[3] == " foo bar\n", "warn file is correct for multiple arguments");
@@ -144,7 +120,7 @@ void test_warn_log_append ( ) {
   logger.warn({"foo", "bar"});
   logger.close();
 
-  string read = get_file_contents("./warn.log");
+  string read = read_file("./warn.log");
   vector<string> parts = split(read, ':');
 
   check(parts[3] == " foo bar\n", "warn file is correct for append first read");
@@ -153,7 +129,7 @@ void test_warn_log_append ( ) {
   logger2.warn({"bar", "baz"});
   logger2.close();
 
-  read = get_file_contents("./warn.log");
+  read = read_file("./warn.log");
 
   vector<string> lines = split(read, '\n');
   parts = split(lines[1], ':');
@@ -178,7 +154,7 @@ void test_debug_log_single ( ) {
   logger.debug({"foo"});
   logger.close();
 
-  string read = get_file_contents("./debug.log");
+  string read = read_file("./debug.log");
   vector<string> parts = split(read, ':');
 
   check(parts[3] == " foo\n", "debug file is correct for a single argument");
@@ -194,7 +170,7 @@ void test_debug_log_multi ( ) {
   logger.debug({"foo", "bar"});
   logger.close();
 
-  string read = get_file_contents("./debug.log");
+  string read = read_file("./debug.log");
   vector<string> parts = split(read, ':');
 
   check(parts[3] == " foo bar\n", "debug file is correct for multiple arguments");
@@ -210,7 +186,7 @@ void test_debug_log_append ( ) {
   logger.debug({"foo", "bar"});
   logger.close();
 
-  string read = get_file_contents("./debug.log");
+  string read = read_file("./debug.log");
   vector<string> parts = split(read, ':');
 
   check(parts[3] == " foo bar\n", "debug file is correct for append first read");
@@ -219,7 +195,7 @@ void test_debug_log_append ( ) {
   logger2.debug({"bar", "baz"});
   logger2.close();
 
-  read = get_file_contents("./debug.log");
+  read = read_file("./debug.log");
 
   vector<string> lines = split(read, '\n');
   parts = split(lines[1], ':');
@@ -244,7 +220,7 @@ void test_notice_log_single ( ) {
   logger.notice({"foo"});
   logger.close();
 
-  string read = get_file_contents("./notice.log");
+  string read = read_file("./notice.log");
   vector<string> parts = split(read, ':');
 
   check(parts[1] == "foo\n", "notice file is correct for a single argument");
@@ -260,7 +236,7 @@ void test_notice_log_multi ( ) {
   logger.notice({"foo", "bar"});
   logger.close();
 
-  string read = get_file_contents("./notice.log");
+  string read = read_file("./notice.log");
   vector<string> parts = split(read, ':');
 
   check(parts[3] == " foo bar\n", "notice file is correct for multiple arguments");
@@ -276,7 +252,7 @@ void test_notice_log_append ( ) {
   logger.notice({"foo", "bar"});
   logger.close();
 
-  string read = get_file_contents("./notice.log");
+  string read = read_file("./notice.log");
   vector<string> parts = split(read, ':');
 
   check(parts[3] == " foo bar\n", "notice file is correct for append first read");
@@ -285,7 +261,7 @@ void test_notice_log_append ( ) {
   logger2.notice({"bar", "baz"});
   logger2.close();
 
-  read = get_file_contents("./notice.log");
+  read = read_file("./notice.log");
 
   vector<string> lines = split(read, '\n');
   parts = split(lines[1], ':');
@@ -310,7 +286,7 @@ void test_log_log_single ( ) {
   logger.log({"foo"});
   logger.close();
 
-  string read = get_file_contents("./cdb.log");
+  string read = read_file("./cdb.log");
   vector<string> parts = split(read, ':');
 
   check(parts[1] == " foo\n", "log file is correct for a single argument");
@@ -326,7 +302,7 @@ void test_log_log_multi ( ) {
   logger.log({"foo", "bar"});
   logger.close();
 
-  string read = get_file_contents("./cdb.log");
+  string read = read_file("./cdb.log");
   vector<string> parts = split(read, ':');
 
   check(parts[1] == " foo bar\n", "log file is correct for multiple arguments");
@@ -342,7 +318,7 @@ void test_log_log_append ( ) {
   logger.log({"foo", "bar"});
   logger.close();
 
-  string read = get_file_contents("./cdb.log");
+  string read = read_file("./cdb.log");
   vector<string> parts = split(read, ':');
 
   check(parts[1] == " foo bar\n", "log file is correct for append first read");
@@ -351,7 +327,7 @@ void test_log_log_append ( ) {
   logger2.log({"bar", "baz"});
   logger2.close();
 
-  read = get_file_contents("./cdb.log");
+  read = read_file("./cdb.log");
 
   vector<string> lines = split(read, '\n');
   parts = split(lines[1], ':');

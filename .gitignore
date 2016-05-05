@@ -1,4 +1,6 @@
 src/*.o
+src/store/*.o
 test/*.o
+test/store/*.o
 test_runner
 .depend

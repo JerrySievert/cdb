@@ -48,6 +48,8 @@ int main (int argc, char **argv) {
 
   test(test_table, "test table");
 
+  test(test_directory, "test directory");
+
   cout << "\nPASSED: " << test_passed << "\nFAILED: " << test_failed << endl;
 
   return (test_failed > 0 ? 1 : 0);

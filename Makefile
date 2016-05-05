@@ -1,13 +1,25 @@
 CC=gcc
 CXX=g++
 RM=rm -f
-CPPFLAGS=-Iinclude -Ileveldb -std=c++11 -Wall -g
-LDFLAGS=-g
-LDLIBS=
+CPPFLAGS=-Iinclude -Ileveldb/include -std=c++11 -Wall -g
+LDFLAGS=-g -Lleveldb/out-static
+LDLIBS=-lleveldb
 
-SRCS=src/log.cc src/util.cc src/table.cc src/field.cc
+SRCS=src/log.cc \
+			src/util.cc \
+			src/table.cc \
+			src/field.cc \
+			src/store/directory.cc \
+			src/store/tablestore.cc
+
 OBJS=$(subst .cc,.o,$(SRCS))
-TEST_SRCS=test/test.cc test/log.cc test/field.cc test/table.cc
+
+TEST_SRCS=test/test.cc \
+			test/log.cc \
+			test/field.cc \
+			test/table.cc \
+			test/store/directory.cc
+
 TEST_OBJS=$(subst .cc,.o,$(TEST_SRCS))
 
 all: test_runner

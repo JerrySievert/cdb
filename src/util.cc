@@ -2,18 +2,12 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <fstream>
+#include <streambuf>
+#include <cerrno>
 
 #include "util.h"
-/*
-vector<string> split(const string& input, const string& regex) {
-  // passing -1 as the submatch index parameter performs splitting
-  regex re(regex);
-  sregex_token_iterator
-    first{input.begin(), input.end(), re, -1},
-    last;
-  return {first, last};
-}
-*/
+
 vector<string> split(const string& s, const char c) {
   string buf {""};
   vector<string> v;
@@ -34,4 +28,12 @@ vector<string> split(const string& s, const char c) {
   }
 
   return v;
+}
+
+string read_file (string filename) {
+  ifstream file(filename);
+  string str((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+
+  return str;
+  throw errno;
 }
