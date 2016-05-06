@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "../test.h"
 #include "store/directory.h"
 #include "store/tablestore.h"
@@ -23,6 +24,8 @@ void test_create_tablestore ( ) {
   check(directory_exists("test/fixtures/store/table1"), "the directory is created");
 
   vector<string> contents = read_directory("test/fixtures/store/table1");
+
+  sort(contents.begin(), contents.end());
 
   check(contents.size() == 5, "the correct number of entries is read");
   check(contents[0] == ".", ". is found");
