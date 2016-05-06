@@ -38,6 +38,8 @@ bool TableStore::create ( ) {
     stores.push_back(store);
   }
 
+  this->is_open = true;
+
   return true;
 }
 
@@ -47,4 +49,6 @@ void TableStore::close ( ) {
   }
 
   stores.clear();
+
+  this->is_open = false;
 }

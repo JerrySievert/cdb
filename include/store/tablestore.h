@@ -11,6 +11,7 @@ private:
   Table table;
   vector<leveldb::DB *> stores;
 public:
+  bool is_open;
   TableStore (Config, Table);
   bool create ( );
   bool open ( );

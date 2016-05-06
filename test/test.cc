@@ -42,6 +42,7 @@ int main (int argc, char **argv) {
   test(test_warn_log, "test warn log");
   test(test_warn_log, "test debug log");
   test(test_warn_log, "test notice log");
+  test(test_debug_log, "test debug log");
   test(test_warn_log, "test log log");
 
   test(test_field, "test field");
