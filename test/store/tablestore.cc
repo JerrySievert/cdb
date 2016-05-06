@@ -33,7 +33,7 @@ void test_create_tablestore ( ) {
 
   store.close();
 
-  remove_directory("test/fixtures/table1");
+  remove_directory("test/fixtures/store");
 }
 
 int test_tablestore ( ) {
