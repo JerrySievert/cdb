@@ -1,6 +1,6 @@
 #include <string>
 #include <vector>
-
+#include <iostream>
 #include "log.h"
 #include "config.h"
 #include "util.h"
@@ -223,7 +223,7 @@ void test_notice_log_single ( ) {
   string read = read_file("./notice.log");
   vector<string> parts = split(read, ':');
 
-  check(parts[1] == "foo\n", "notice file is correct for a single argument");
+  check(parts[3] == " foo\n", "notice file is correct for a single argument");
 
   cleanup();
 }
@@ -289,7 +289,7 @@ void test_log_log_single ( ) {
   string read = read_file("./cdb.log");
   vector<string> parts = split(read, ':');
 
-  check(parts[1] == " foo\n", "log file is correct for a single argument");
+  check(parts[3] == " foo\n", "log file is correct for a single argument");
 
   cleanup();
 }
@@ -305,7 +305,7 @@ void test_log_log_multi ( ) {
   string read = read_file("./cdb.log");
   vector<string> parts = split(read, ':');
 
-  check(parts[1] == " foo bar\n", "log file is correct for multiple arguments");
+  check(parts[3] == " foo bar\n", "log file is correct for multiple arguments");
 
   cleanup();
 }
@@ -321,7 +321,7 @@ void test_log_log_append ( ) {
   string read = read_file("./cdb.log");
   vector<string> parts = split(read, ':');
 
-  check(parts[1] == " foo bar\n", "log file is correct for append first read");
+  check(parts[3] == " foo bar\n", "log file is correct for append first read");
 
   Logger logger2(config);
   logger2.log({"bar", "baz"});
@@ -331,7 +331,7 @@ void test_log_log_append ( ) {
 
   vector<string> lines = split(read, '\n');
   parts = split(lines[1], ':');
-  check(parts[1] == " bar baz", "log file is correct for append");
+  check(parts[3] == " bar baz", "log file is correct for append");
 
   cleanup();
 }
