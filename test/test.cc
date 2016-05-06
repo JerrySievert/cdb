@@ -33,7 +33,7 @@ void _test_start (const char *name) {
 
 int main (int argc, char **argv) {
   if (argc > 1) {
-    if ((strcmp(argv[1], "--spec") == 0) || (strcmp(argv[1], "-s") == 0)) {
+    if ((string(argv[1]) == "--spec") || (string(argv[1]) == "-s")) {
       spec = 1;
     }
   }
@@ -51,7 +51,7 @@ int main (int argc, char **argv) {
   test(test_directory, "test directory");
 
   test(test_tablestore, "test tablestore");
-  
+
   cout << "\nPASSED: " << test_passed << "\nFAILED: " << test_failed << endl;
 
   return (test_failed > 0 ? 1 : 0);

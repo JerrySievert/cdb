@@ -28,7 +28,7 @@ void Table::deserialize (string serialized) {
 
   this->name = parts[0];
 
-  for (int i = 1; i < parts.size(); i++) {
+  for (uint8_t i = 1; i < parts.size(); i++) {
     Field field;
     field.deserialize(parts[i]);
     fields.push_back(field);

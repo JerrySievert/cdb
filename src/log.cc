@@ -14,7 +14,7 @@ string current_time ( ) {
 }
 
 void write_log (ofstream& out_f, initializer_list<string> out) {
-  int count = 1;
+  uint8_t count = 1;
 
   out_f << current_time() << ": ";
 
