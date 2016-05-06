@@ -14,6 +14,6 @@ public:
   TableStore (Config, Table);
   bool create ( );
   bool open ( );
-  bool close ( );
+  void close ( );
 
 };

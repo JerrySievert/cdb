@@ -29,3 +29,5 @@ int test_field ( );
 int test_table ( );
 
 int test_directory ( );
+
+int test_tablestore ( );

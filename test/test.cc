@@ -50,6 +50,8 @@ int main (int argc, char **argv) {
 
   test(test_directory, "test directory");
 
+  test(test_tablestore, "test tablestore");
+  
   cout << "\nPASSED: " << test_passed << "\nFAILED: " << test_failed << endl;
 
   return (test_failed > 0 ? 1 : 0);

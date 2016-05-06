@@ -1,8 +1,9 @@
 CC=gcc
 CXX=g++
 RM=rm -f
-CPPFLAGS=-Iinclude -Ileveldb/include -std=c++11 -Wall -g -fsanitize=address -fno-omit-frame-pointer
-LDFLAGS=-g -Lleveldb/out-static -fsanitize=address -fno-omit-frame-pointer
+CD=cd
+CPPFLAGS=-Iinclude -Ileveldb/include -std=c++11 -Wall -g
+LDFLAGS=-g -Lleveldb/out-static
 LDLIBS=-lleveldb
 
 SRCS=src/log.cc \
@@ -18,7 +19,8 @@ TEST_SRCS=test/test.cc \
 			test/log.cc \
 			test/field.cc \
 			test/table.cc \
-			test/store/directory.cc
+			test/store/directory.cc \
+			test/store/tablestore.cc
 
 TEST_OBJS=$(subst .cc,.o,$(TEST_SRCS))
 
@@ -36,6 +38,7 @@ depend: .depend
 clean:
 	$(RM) $(OBJS)
 	$(RM) $(TEST_OBJS)
+	$(CD) leveldb && make clean
 
 dist-clean: clean
 	$(RM) *~ .depend
