@@ -25,8 +25,8 @@ TEST_SRCS=test/test.cc \
 TEST_OBJS=$(subst .cc,.o,$(TEST_SRCS))
 
 ifdef COV
-	CPPFLAGS += -gcov
-	LDFLAGS += -gcov
+	CPPFLAGS += -fprofile-arcs -ftest-coverage
+	LDFLAGS += -fprofile-arcs -ftest-coverage
 endif
 
 all: test_runner
