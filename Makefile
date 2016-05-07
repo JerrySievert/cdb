@@ -24,6 +24,11 @@ TEST_SRCS=test/test.cc \
 
 TEST_OBJS=$(subst .cc,.o,$(TEST_SRCS))
 
+ifdef COV
+	CPPFLAGS += -gcov
+	LDFLAGS += -gcov
+endif
+
 all: test_runner
 
 test_runner: $(OBJS) $(TEST_OBJS)

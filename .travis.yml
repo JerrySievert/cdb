@@ -1,10 +1,10 @@
 before_install:
-  - sudo apt-get install -y clang-3.5 llvm-3.5-dev libedit-dev
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update -qq
   - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8" LD="g++-4.8"; fi
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90
+  - pip install --user cpp-coveralls
 
 before_script:
   - git submodule init
@@ -17,11 +17,13 @@ before_script:
 
 language: cpp
 compiler:
-  - clang
   - gcc
 
 dist: trusty
 
 script:
-  - make
+  - make COV=true
   - ./test_runner -s
+
+after_success:
+  - coveralls --exclude lib --exclude tests --gcov-options '\-lp'
