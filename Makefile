@@ -4,7 +4,7 @@ RM=rm -f
 CD=cd
 CPPFLAGS=-Iinclude -Ileveldb/include -std=c++11 -Wall -g
 LDFLAGS=-g -Lleveldb/out-static
-LDLIBS=-lleveldb
+LDLIBS=-lleveldb -lpthread
 
 SRCS=src/log.cc \
 			src/util.cc \
