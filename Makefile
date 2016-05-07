@@ -38,7 +38,6 @@ depend: .depend
 clean:
 	$(RM) $(OBJS)
 	$(RM) $(TEST_OBJS)
-	$(CD) leveldb && make clean
 
 dist-clean: clean
 	$(RM) *~ .depend
