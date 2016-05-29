@@ -31,3 +31,5 @@ int test_table ( );
 int test_directory ( );
 
 int test_tablestore ( );
+
+int test_datum ( );

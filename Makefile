@@ -10,6 +10,7 @@ SRCS=src/log.cc \
 			src/util.cc \
 			src/table.cc \
 			src/field.cc \
+			src/datum.cc \
 			src/store/directory.cc \
 			src/store/tablestore.cc
 
@@ -19,6 +20,7 @@ TEST_SRCS=test/test.cc \
 			test/log.cc \
 			test/field.cc \
 			test/table.cc \
+			test/datum.cc \
 			test/store/directory.cc \
 			test/store/tablestore.cc
 
