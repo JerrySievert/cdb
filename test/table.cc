@@ -26,5 +26,10 @@ int test_table ( ) {
   check(table2.fields[1].name == "bar", "the second field is correct");
   check(table2.fields[2].name == "baz", "the third field is correct");
 
+  check(table2.field("foo") == 0, "the first field is found");
+  check(table2.field("bar") == 1, "the second field is found");
+  check(table2.field("baz") == 2, "the third field is found");
+  check(table2.field("foobar") == -1, "an invalid field is not found");
+
   done();
 }

@@ -36,3 +36,13 @@ void Table::deserialize (string serialized) {
 
   this->fields = fields;
 }
+
+int16_t Table::field (string field) {
+  for (uint16_t i = 0; i < this->fields.size(); i++) {
+    if (this->fields[i].name == field) {
+      return i;
+    }
+  }
+
+  return -1;
+}

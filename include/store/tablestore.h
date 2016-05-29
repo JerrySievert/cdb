@@ -1,7 +1,10 @@
 #pragma once
 
+#include <stdint.h>
+
 #include "config.h"
 #include "table.h"
+#include "datum.h"
 
 #include "leveldb/db.h"
 
@@ -16,5 +19,6 @@ public:
   bool create ( );
   bool open ( );
   void close ( );
-
+  Datum *read (uint32_t);
+  bool write (uint32_t, Datum *);
 };

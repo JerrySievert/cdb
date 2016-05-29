@@ -19,9 +19,12 @@ public:
 class Datum {
 public:
   Datum ( );
-  Datum (Container, FieldType);
+  Datum (Container, string, FieldType);
   Container container;
   FieldType type;
+  string field;
   string serialize ( );
   void deserialize (string);
+  string ToString ( );
+  operator string() const;
 };

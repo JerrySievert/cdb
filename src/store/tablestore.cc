@@ -2,6 +2,7 @@
 #include <string>
 #include "store/tablestore.h"
 #include "store/directory.h"
+#include "datum.h"
 #include "util.h"
 #include "log.h"
 
@@ -51,4 +52,8 @@ void TableStore::close ( ) {
   stores.clear();
 
   this->is_open = false;
+}
+
+bool TableStore::write (uint32_t rowid, Datum *datum) {
+
 }

@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <stdint.h>
 
 #include "field.h"
 #include "config.h"
@@ -16,4 +17,5 @@ public:
   Table (string, vector<Field>);
   string serialize ();
   void deserialize (string);
+  int16_t field (string);
 };
