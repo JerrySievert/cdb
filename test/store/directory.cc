@@ -6,7 +6,7 @@ void test_read_directory ( ) {
   vector<string> contents = read_directory("test/fixtures");
 
   sort(contents.begin(), contents.end());
-  
+
   check(contents.size() == 5, "the correct number of entries is read");
   check(contents[0] == ".", ". is found");
   check(contents[1] == "..", ".. is found");

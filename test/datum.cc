@@ -1,4 +1,3 @@
-#include <iostream>
 #include "test.h"
 #include "field.h"
 #include "datum.h"
@@ -20,7 +19,6 @@ void test_datum_serialize_string ( ) {
 
   Datum datum2;
   datum2.deserialize(serialized);
-  std::cout << datum2.container.t_string << std::endl;
   check(datum2.type == CDB_STRING, "the unserialized type is correct");
   check(datum2.container.t_string == "test", "the unserialized value is correct");
 }

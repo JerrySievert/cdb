@@ -1,6 +1,5 @@
 #include <string>
 #include <vector>
-#include <iostream>
 #include "log.h"
 #include "config.h"
 #include "util.h"

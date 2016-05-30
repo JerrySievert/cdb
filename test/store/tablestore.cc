@@ -1,4 +1,3 @@
-#include <iostream>
 #include <algorithm>
 #include "../test.h"
 #include "store/directory.h"
@@ -83,10 +82,36 @@ void test_read_datastore ( ) {
   remove_directory("test/fixtures/store");
 }
 
+void test_delete_datastore ( ) {
+  TableStore *store = setup_store();
+  Datum datum_w("1:foo:hello world\n");
+
+  store->write("foo", 123, &datum_w);
+
+  Datum *datum;
+
+  datum = store->read("foo", 123);
+
+  check(datum != NULL, "reading a non-empty value returns a Datum");
+  check(datum->is_ok() == true, "the Datum is ok");
+  check(datum->type == CDB_STRING, "the type is correct");
+  check(datum->container.t_string == "hello world", "the value is correct");
+
+  check(store->del("foo", 123) == true, "delete returns true");
+  check(store->read("foo", 123) == NULL, "then read is NULL");
+
+  check(store->del("foobar", 123) == false, "deleting from an invalid field is false");
+
+  store->close();
+
+  remove_directory("test/fixtures/store");
+}
+
 int test_tablestore ( ) {
   test_create_tablestore();
   test_write_datastore();
   test_read_datastore();
+  test_delete_datastore();
 
   done();
 }
