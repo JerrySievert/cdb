@@ -126,6 +126,12 @@ void test_datum_deserialize_not_ok ( ) {
   check(datum.is_ok() == false, "incorrectly deserialized type sets is_ok() to false");
 }
 
+void test_datum_deserialize_zero ( ) {
+  Datum datum("0:foo:32\n");
+
+  check(datum.is_ok() == false, "a zero serialization is not ok");
+}
+
 int test_datum ( ) {
   test_datum_serialize_string();
   test_datum_serialize_int8();
@@ -135,6 +141,7 @@ int test_datum ( ) {
 
   test_datum_deserialize_constructor();
   test_datum_deserialize_not_ok();
+  test_datum_deserialize_zero();
 
   done();
 }
