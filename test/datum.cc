@@ -113,12 +113,30 @@ void test_datum_serialize_double ( ) {
   check(datum2.container.t_double == 3.14159, "the unserialized value is correct");
 }
 
+void test_datum_deserialize_constructor ( ) {
+  Datum datum("4:foo:32\n");
+
+  check(datum.type == CDB_INT32, "the unserialized type is correct");
+  check(datum.container.t_32 == 32, "the unserialized value is correct");
+}
+
+void test_datum_deserialize_not_ok ( ) {
+  Datum datum;
+
+  datum.deserialize("foo:bar");
+
+  check(datum.is_ok() == false, "incorrectly deserialized type sets is_ok() to false");
+}
+
 int test_datum ( ) {
   test_datum_serialize_string();
   test_datum_serialize_int8();
   test_datum_serialize_int16();
   test_datum_serialize_int32();
   test_datum_serialize_double();
+
+  test_datum_deserialize_constructor();
+  test_datum_deserialize_not_ok();
 
   done();
 }

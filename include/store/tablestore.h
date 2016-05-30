@@ -19,6 +19,7 @@ public:
   bool create ( );
   bool open ( );
   void close ( );
-  Datum *read (uint32_t);
-  bool write (uint32_t, Datum *);
+  Datum *read (string, uint32_t);
+  bool write (string, uint32_t, Datum *);
+  bool del (string, uint32_t);
 };

@@ -8,17 +8,22 @@
 Datum::Datum ( ) {
 }
 
+Datum::Datum (string serialized) {
+  this->deserialize(serialized);
+}
+
 Datum::Datum (Container container, string field, FieldType type) {
   this->container = container;
   this->field = field;
   this->type = type;
+  this->ok = true;
 }
 
 
 string Datum::serialize ( ) {
   string ret;
 
-  ret = to_string(this->type) + ":" + this->field + ":" + this->ToString() + "\n";
+  ret = to_string(this->type) + ":" + this->field + ":" + this->To_String() + "\n";
 
   return ret;
 }
@@ -26,7 +31,18 @@ string Datum::serialize ( ) {
 void Datum::deserialize (string serialized) {
   vector<string> parts = split(serialized, ':');
 
-  this->type = stoi(parts[0]);
+  try {
+    this->type = std::stoi(parts[0]);
+  } catch (...) {
+    this->ok = false;
+    return;
+  }
+
+  if (this->type == 0) {
+    this->ok = false;
+    return;
+  }
+
   this->field = parts[1];
 
   switch (this->type) {
@@ -50,9 +66,11 @@ void Datum::deserialize (string serialized) {
     this->container.t_double = atof(parts[2].c_str());
     break;
   }
+
+  this->ok = true;
 }
 
-string Datum::ToString ( ) {
+string Datum::To_String ( ) {
   string ret;
 
   switch (this->type) {
@@ -78,4 +96,8 @@ string Datum::ToString ( ) {
   }
 
   return ret;
+}
+
+bool Datum::is_ok ( ) {
+  return this->ok;
 }

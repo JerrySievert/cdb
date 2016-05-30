@@ -19,12 +19,15 @@ public:
 class Datum {
 public:
   Datum ( );
+  Datum (string);
   Datum (Container, string, FieldType);
   Container container;
   FieldType type;
   string field;
   string serialize ( );
   void deserialize (string);
-  string ToString ( );
-  operator string() const;
+  string To_String ( );
+  bool is_ok ( );
+private:
+  bool ok;
 };

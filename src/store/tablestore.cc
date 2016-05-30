@@ -54,6 +54,64 @@ void TableStore::close ( ) {
   this->is_open = false;
 }
 
-bool TableStore::write (uint32_t rowid, Datum *datum) {
+bool TableStore::write (string field, uint32_t rowid, Datum *datum) {
+  string _rowid = to_string(rowid);
 
+  int16_t field_num = this->table.field(field);
+
+  if (field_num == -1) {
+    return false;
+  }
+
+  leveldb::DB *store = this->stores[field_num];
+  leveldb::Status status = store->Put(leveldb::WriteOptions(), to_string(rowid), datum->serialize());
+
+  if (status.ok()) {
+    return true;
+  }
+
+  return false;
+}
+
+Datum *TableStore::read (string field, uint32_t rowid) {
+  Datum *datum;
+  string results;
+  int16_t field_num = this->table.field(field);
+
+  if (field_num == -1) {
+    return NULL;
+  }
+
+  leveldb::DB *store = this->stores[field_num];
+  leveldb::Status status = store->Get(leveldb::ReadOptions(), to_string(rowid), &results);
+
+  if (status.ok() == false) {
+    return NULL;
+  }
+
+  datum = new Datum(results);
+
+  if (datum->is_ok() == false) {
+    delete datum;
+    return NULL;
+  }
+
+  return datum;
+}
+
+bool TableStore::del (string field, uint32_t rowid) {
+  int16_t field_num = this->table.field(field);
+
+  if (field_num == -1) {
+    return false;
+  }
+
+  leveldb::DB *store = this->stores[field_num];
+  leveldb::Status status = store->Delete(leveldb::WriteOptions(), to_string(rowid));
+
+  if (status.ok()) {
+    return true;
+  }
+
+  return false;
 }
