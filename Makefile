@@ -1,5 +1,5 @@
-CC=clang
-CXX=clang++
+CC=gcc
+CXX=g++
 RM=rm -f
 CD=cd
 CPPFLAGS=-Iinclude -Ileveldb/include -std=c++11 -Wall -g
