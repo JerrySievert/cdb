@@ -50,7 +50,7 @@ public:
 
   /**
     Reads a `Datum` from the underlying `TableStore`
-    \param `field` - `string` of field name to read
+    \param `field` - `string` of field name to read from
     \param `rowid` - `uint32_t` rowid to read
     \returns `Datum` - `pointer` if found, `NULL` if not
   */
@@ -58,16 +58,17 @@ public:
 
   /**
     Writes a `Datum` to the underlying `TableStore`
-    \param `field` - `string` of field name to read
-    \param `rowid` - `uint32_t` rowid to read
+    \param `field` - `string` of field name to write to
+    \param `rowid` - `uint32_t` rowid to write
+    \param `Datum` - `Datum` to write
     \returns `bool` - `true` if written, `false` if not
   */
   bool write (string, uint32_t, Datum *);
 
   /**
     Deletes a `Datum` from the underlying `TableStore`
-    \param `field` - `string` of field name to read
-    \param `rowid` - `uint32_t` rowid to read
+    \param `field` - `string` of field name to delete from
+    \param `rowid` - `uint32_t` rowid to delete
     \returns `bool` - `true` if deleted, `false` if not
   */
   bool del (string, uint32_t);
