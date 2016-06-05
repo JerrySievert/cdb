@@ -101,3 +101,7 @@ string Datum::To_String ( ) {
 bool Datum::is_ok ( ) {
   return this->ok;
 }
+
+int8_t compare (Datum compare_to) {
+  return 0;
+}

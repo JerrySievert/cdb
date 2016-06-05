@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <stdint.h>
 
 #include "field.h"
 
@@ -28,6 +29,7 @@ public:
   void deserialize (string);
   string To_String ( );
   bool is_ok ( );
+  int8_t compare (Datum);
 private:
   bool ok;
 };

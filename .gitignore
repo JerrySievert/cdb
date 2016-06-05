@@ -3,4 +3,5 @@ src/store/*.o
 test/*.o
 test/store/*.o
 test_runner
+docs
 .depend

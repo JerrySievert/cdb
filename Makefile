@@ -45,8 +45,12 @@ depend: .depend
 clean:
 	$(RM) $(OBJS)
 	$(RM) $(TEST_OBJS)
+	$(RM) -rf docs
 
 dist-clean: clean
 	$(RM) *~ .depend
+
+docs:
+	doxygen
 
 include .depend
